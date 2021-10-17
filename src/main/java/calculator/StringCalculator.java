@@ -5,38 +5,39 @@ import java.util.regex.Pattern;
 
 
 class StringCalculator {
+	int count=0;
 	
-    public int add(String text) throws Exception {
-    	if(text.isEmpty()) {
+    public int add(String numbers) throws Exception {
+    	AddCalled();
+    	if(numbers.isEmpty()) {
     		return 0;
     	}
     	else {
-    		int tokens =tokenize(text);
+    		int tokens =tokenize(numbers);
     		return tokens;
     	}
     }
+    
     private static int tokenize(String text) throws Exception {
+    	String[]tokens;
     	if(text.startsWith("//")) {
     		Matcher m=Pattern.compile("^//(.+?)\\n(.*)$").matcher(text);
     		m.matches();
     		String customDelimiter=m.group(1);
     		String numbers=m.group(2);
-    		String[] tokens= numbers.split(customDelimiter);
-    		int sum=0;
-        	for(int index=0;index<tokens.length;index++) {
-        		sum+=Integer.parseInt(tokens[index]);
+    		 tokens= numbers.split(customDelimiter);
+    	}else {
+    		tokens=text.split(",|\n");
+        	for(String cur: tokens) {
+        		if(toInt(cur)<0) {
+        			throw  new Exception("negatives not allowed"+cur);
+        		}
         	}
-        	return sum;
     	}
-    	String[]tokens=text.split(",|\n");
-    	for(String cur: tokens) {
-    		if(Integer.parseInt(cur)<0) {
-    			throw  new Exception("negative input"+cur);
-    		}
-    	}
+    	
     	int sum=0;
     	for(String cur: tokens) {
-    		if(Integer.parseInt(cur)>1000) {
+    		if(toInt(cur)>1000) {
     			continue;
     		}
     		sum+=Integer.parseInt(cur);
@@ -46,6 +47,10 @@ class StringCalculator {
     
     private static int toInt(String text) {
     	return Integer.parseInt(text);
+    }
+    private int AddCalled() {
+    	count++;
+    	return count;
     }
     	
 
