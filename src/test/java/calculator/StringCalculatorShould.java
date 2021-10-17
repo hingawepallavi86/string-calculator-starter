@@ -23,6 +23,11 @@ class StringCalculatorShould {
         assertEquals(3, stringCalculator.add("1,2"));
     }
     @Test
+    void return_sum_of_multiple_nums() {
+        StringCalculator stringCalculator = new StringCalculator();
+        assertEquals(6, stringCalculator.add("1,2,3"));
+    }
+    @Test
     void string_handle_new_lines_between_numbers_return_sum() {
         StringCalculator stringCalculator = new StringCalculator();
         assertEquals(6, stringCalculator.add("1\n2,3"));
@@ -32,5 +37,6 @@ class StringCalculatorShould {
         StringCalculator stringCalculator = new StringCalculator();
         assertEquals(6, stringCalculator.add("//;\n1;2"));
     }
+    
     
 }

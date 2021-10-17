@@ -1,7 +1,9 @@
 package calculator;
-import static ch.lambdaj.lambda.*;
+
 import java.util.regex.Matcher;
+import java.util.List;
 import java.util.regex.Pattern;
+
 
 class StringCalculator {
 	
@@ -9,18 +11,32 @@ class StringCalculator {
     	if(text.isEmpty()) {
     		return 0;
     	}
-    	else if(text.contains(",")) {
-    		String[]tokens =text.split(",");
-    		convert(tokens,new Converter<String,Integer>() {
-    			public Integer convert(String from) {
-    				return toInt(from)
-    			}
-    		});
-    		return toInt(tokens[0])+ toInt(tokens[1]);
+    	else {
+    		int tokens =tokenize(text);
+    		return tokens;
     	}
-    	else
-    		return toInt(text);
     }
+    private static int tokenize(String text) {
+    	if(text.startsWith("//")) {
+    		Matcher m=Pattern.compile("//(.)\n(.*)").matcher(text);
+    		m.matches();
+    		String customDelimiter=m.group(1);
+    		String numbers=m.group(2);
+    		String[] tokens= numbers.split(customDelimiter);
+    		int sum=0;
+        	for(int index=0;index<tokens.length;index++) {
+        		sum+=Integer.parseInt(tokens[index]);
+        	}
+        	return sum;
+    	}
+    	String[]tokens=text.split(",|\n");
+    	int sum=0;
+    	for(int index=0;index<tokens.length;index++) {
+    		sum+=Integer.parseInt(tokens[index]);
+    	}
+    	return sum;
+    }
+    
     private static int toInt (String text) {
     	return Integer.parseInt(text);
     }
