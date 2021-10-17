@@ -40,7 +40,11 @@ class StringCalculatorShould {
         StringCalculator stringCalculator = new StringCalculator();
          stringCalculator.add("-1");
     }
-    
+    @Test(expected=Exception.class)
+    void ignore_value_greater_than_1000_return_sum() throws Exception {
+        StringCalculator stringCalculator = new StringCalculator();
+        assertEquals(20, stringCalculator.add("10,10,1001"));
+    }
     
     
 }

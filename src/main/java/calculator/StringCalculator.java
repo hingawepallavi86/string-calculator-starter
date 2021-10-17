@@ -35,8 +35,11 @@ class StringCalculator {
     		}
     	}
     	int sum=0;
-    	for(int index=0;index<tokens.length;index++) {
-    		sum+=Integer.parseInt(tokens[index]);
+    	for(String cur: tokens) {
+    		if(Integer.parseInt(cur)>1000) {
+    			continue;
+    		}
+    		sum+=Integer.parseInt(cur);
     	}
     	return sum;
     }
