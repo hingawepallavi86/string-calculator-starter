@@ -2,13 +2,16 @@ package calculator;
 
 class StringCalculator {
 
-    public int add(String input) {
-    	if(input.isEmpty())
+    public int add(String numbers) {
+    	if(isEmpty(numbers))
         return 0;
-    	return stringToInt(input);
+    	return stringToInt(numbers);
     }
-    public int stringToInt(String input) {
-    	return Integer.parseInt(input);
+    public boolean isEmpty(String numbers) {
+    	return numbers.isEmpty();
+    }
+    public int stringToInt(String numbers) {
+    	return Integer.parseInt(numbers);
     }
 
 }
