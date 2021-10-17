@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 class StringCalculator {
 	
-    public int add(String text) {
+    public int add(String text) throws Exception {
     	if(text.isEmpty()) {
     		return 0;
     	}
@@ -15,7 +15,7 @@ class StringCalculator {
     		return tokens;
     	}
     }
-    private static int tokenize(String text) {
+    private static int tokenize(String text) throws Exception {
     	if(text.startsWith("//")) {
     		Matcher m=Pattern.compile("^//(.+?)\\n(.*)$").matcher(text);
     		m.matches();
@@ -29,6 +29,11 @@ class StringCalculator {
         	return sum;
     	}
     	String[]tokens=text.split(",|\n");
+    	for(String cur: tokens) {
+    		if(Integer.parseInt(cur)<0) {
+    			throw  new Exception("negative input"+cur);
+    		}
+    	}
     	int sum=0;
     	for(int index=0;index<tokens.length;index++) {
     		sum+=Integer.parseInt(tokens[index]);
@@ -36,7 +41,7 @@ class StringCalculator {
     	return sum;
     }
     
-    private static int toInt (String text) {
+    private static int toInt(String text) {
     	return Integer.parseInt(text);
     }
     	
