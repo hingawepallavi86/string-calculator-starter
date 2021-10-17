@@ -1,30 +1,29 @@
 package calculator;
+import static ch.lambdaj.lambda.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 class StringCalculator {
-	public final String delimeter=",|\n";
-
-    public int add(String numbers) {
-    	String[]input=numbers.split(delimeter);
-    	if(isEmpty(numbers))
-        return 0;
-    	else if(input.length>1) {
-    		return sumOfTwo(input);
+	
+    public int add(String text) {
+    	if(text.isEmpty()) {
+    		return 0;
     	}
-    	return stringToInt(numbers);
-    }
-    public int sumOfTwo(String[] input) {
-    	int sum=0;
-    	for(int index=0;index<input.length;index++) {
-    		sum+=Integer.parseInt(input[index]);
+    	else if(text.contains(",")) {
+    		String[]tokens =text.split(",");
+    		convert(tokens,new Converter<String,Integer>() {
+    			public Integer convert(String from) {
+    				return toInt(from)
+    			}
+    		});
+    		return toInt(tokens[0])+ toInt(tokens[1]);
     	}
-    	return sum;
+    	else
+    		return toInt(text);
     }
-    
-    public boolean isEmpty(String numbers) {
-    	return numbers.isEmpty();
+    private static int toInt (String text) {
+    	return Integer.parseInt(text);
     }
-    public int stringToInt(String numbers) {
-    	return Integer.parseInt(numbers);
-    }
+    	
 
 }
