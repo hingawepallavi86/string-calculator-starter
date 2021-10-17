@@ -1,7 +1,6 @@
 package calculator;
 
 import java.util.regex.Matcher;
-import java.util.List;
 import java.util.regex.Pattern;
 
 
@@ -18,7 +17,7 @@ class StringCalculator {
     }
     private static int tokenize(String text) {
     	if(text.startsWith("//")) {
-    		Matcher m=Pattern.compile("//(.)\n(.*)").matcher(text);
+    		Matcher m=Pattern.compile("^//(.+?)\\n(.*)$").matcher(text);
     		m.matches();
     		String customDelimiter=m.group(1);
     		String numbers=m.group(2);
