@@ -1,18 +1,23 @@
 package calculator;
 
 class StringCalculator {
+	public final String delimeter=",";
 
     public int add(String numbers) {
-    	String[]input=numbers.split(",");
+    	String[]input=numbers.split(delimeter);
     	if(isEmpty(numbers))
         return 0;
     	else if(input.length>1) {
-    		return sumOfTwo(input[0],input[1]);
+    		return sumOfTwo(input);
     	}
     	return stringToInt(numbers);
     }
-    public int sumOfTwo(String num1,String num2) {
-    	return Integer.parseInt(num1)+Integer.parseInt(num2);
+    public int sumOfTwo(String[] input) {
+    	int sum=0;
+    	for(int index=0;index<input.length;index++) {
+    		sum+=Integer.parseInt(input[index]);
+    	}
+    	return sum;
     }
     
     public boolean isEmpty(String numbers) {

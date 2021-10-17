@@ -22,5 +22,10 @@ class StringCalculatorShould {
         StringCalculator stringCalculator = new StringCalculator();
         assertEquals(3, stringCalculator.add("1,2"));
     }
+    @Test
+    void string_handle_new_lines_between_numbers_return_sum() {
+        StringCalculator stringCalculator = new StringCalculator();
+        assertEquals(3, stringCalculator.add("1,2"));
+    }
     
 }
