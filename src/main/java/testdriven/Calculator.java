@@ -15,12 +15,23 @@ public class Calculator {
 		else if(string.startsWith("//")) {
 			return getNumbersFromDelimeter(string);
 		}
+		else if(string.startsWith("e")) {
+			return evenAddition(string);
+		}
 		else {
 			return stringToNum(numbers);
 		}
 		//return (Integer.parseInt(numbers[0])+Integer.parseInt(numbers[1]));
 		
 		
+	}
+	public int evenAddition(String string) {
+		int sum=0;
+		String[]num= string.split("e|,");
+		for(int i =0;i<num.length;i++) {
+			sum=sum+Integer.parseInt(num[i]);
+		}
+		return sum;
 	}
 	public int stringToNum(String[] numbers) throws Exception {
 		int sum=0;
@@ -46,6 +57,7 @@ public class Calculator {
 		}
 		return sum;
 	}
+	
 	public void fuctionCall() {
 		count++;
 		System.out.println(count);
