@@ -1,48 +1,59 @@
-package calculator;
+package testdriven;
+import  org.junit.Assert;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
-class StringCalculatorShould {
 
-    @Test
-    void empty_string_should_return_0() throws Exception {
-        StringCalculator stringCalculator = new StringCalculator();
-        assertEquals(0, stringCalculator.add(""));
-    }
 
-    @Test
-    void string_with_single_number_should_return_number_as_int() throws Exception {
-        StringCalculator stringCalculator = new StringCalculator();
-        assertEquals(1, stringCalculator.add("1"));
-    }
-    @Test
-    void string_with_two_number_and_comma_should_return_sum() throws Exception {
-        StringCalculator stringCalculator = new StringCalculator();
-        assertEquals(3, stringCalculator.add("1,2"));
-    }
-    @Test
-    void return_sum_of_multiple_nums() throws Exception {
-        StringCalculator stringCalculator = new StringCalculator();
-        assertEquals(6, stringCalculator.add("1,2,3"));
-    }
-    @Test
-    void string_handle_new_lines_between_numbers_return_sum() throws Exception {
-        StringCalculator stringCalculator = new StringCalculator();
-        assertEquals(6, stringCalculator.add("1\n2,3"));
-    }
-    @Test(expected=Exception.class)
-    void Negative_number_throw_exception() throws Exception {
-        StringCalculator stringCalculator = new StringCalculator();
-         stringCalculator.add("-1");
-    }
-    @Test(expected=Exception.class)
-    void ignore_value_greater_than_1000_return_sum() throws Exception {
-        StringCalculator stringCalculator = new StringCalculator();
-        assertEquals(20, stringCalculator.add("10,10,1001"));
-    }
-    
-    
+public class TestCal {
+	@Test
+	//it should return zero
+	public void emptyStringTest() throws Exception {
+		 Calculator calculator=new Calculator();
+		 assertEquals(calculator.calculate(""),0);
+	}
+	@Test
+	public void singleValueTest() throws Exception {
+		Calculator calculator=new Calculator();
+		assertEquals(calculator.calculate("1"),1);
+	}
+	@Test
+	public void twoNumbersSeparatedByComma() throws Exception {
+		Calculator calculator=new Calculator();
+		assertEquals(calculator.calculate("1,2"),3);
+	}
+	@Test
+	public void NumbersSeparatedByComma() throws Exception {
+		Calculator calculator=new Calculator();
+		assertEquals(calculator.calculate("1,2,3"),6);
+	}
+	@Test
+	public void NumbersSeparatedBynewLine() throws Exception {
+		Calculator calculator=new Calculator();
+		assertEquals(calculator.calculate("1\n2,3"),6);
+	}
+	@Test(expected=Exception.class)
+	public void negativeNumber() throws Exception {
+		Calculator calculator=new Calculator();
+		calculator.calculate("-1");
+	}
+	@Test
+	public void Numbersgreaterthan1000() throws Exception {
+		Calculator calculator=new Calculator();
+		assertEquals(calculator.calculate("10,10,1001"),20);
+	}
+	@Test
+	public void NumberswithDelimeter() throws Exception {
+		Calculator calculator=new Calculator();
+		assertEquals(calculator.calculate("//;\n1;2"),3);
+	}
+	
+	
+	
+
+	
+	
+	
+
 }
