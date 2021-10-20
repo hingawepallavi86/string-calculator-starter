@@ -1,8 +1,10 @@
-package testdriven;
+package calculator;
 import  org.junit.Assert;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
+
+import testdriven.Calculator;
 
 
 
@@ -47,6 +49,11 @@ public class TestCal {
 	public void NumberswithDelimeter() throws Exception {
 		Calculator calculator=new Calculator();
 		assertEquals(calculator.calculate("//;\n1;2"),3);
+	}
+	@Test
+	public void EvenAddition() throws Exception {
+		Calculator calculator=new Calculator();
+		assertEquals(calculator.calculate("e1,2"),3);
 	}
 	
 	
