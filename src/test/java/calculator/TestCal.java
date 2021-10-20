@@ -53,7 +53,12 @@ public class TestCal {
 	@Test
 	public void EvenAddition() throws Exception {
 		Calculator calculator=new Calculator();
-		assertEquals(calculator.calculate("e1,2"),3);
+		assertEquals(calculator.calculate("E,1,2,3"),2);
+	}
+	@Test
+	public void OddAddition() throws Exception {
+		Calculator calculator=new Calculator();
+		assertEquals(calculator.calculate("O,1,2,3"),4);
 	}
 	
 	

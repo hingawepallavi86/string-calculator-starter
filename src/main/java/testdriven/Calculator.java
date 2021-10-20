@@ -1,5 +1,7 @@
 package testdriven;
 
+import java.util.Arrays;
+
 public class Calculator {
 	static int count=0;
 
@@ -15,8 +17,13 @@ public class Calculator {
 		else if(string.startsWith("//")) {
 			return getNumbersFromDelimeter(string);
 		}
-		else if(string.startsWith("e")) {
+		else if(string.startsWith("E")) {
+			//System.out.println("in condition");
 			return evenAddition(string);
+		}
+		else if(string.startsWith("O")) {
+			//System.out.println("in condition");
+			return OddAddition(string);
 		}
 		else {
 			return stringToNum(numbers);
@@ -27,10 +34,36 @@ public class Calculator {
 	}
 	public int evenAddition(String string) {
 		int sum=0;
-		String[]num= string.split("e|,");
-		for(int i =0;i<num.length;i++) {
-			sum=sum+Integer.parseInt(num[i]);
+		
+		if(string.startsWith("E")) {
+		//	System.out.println("in even condition");
+			String[]num= string.split(",");
+			for(int i =1;i<num.length;i++) {
+				System.out.println("even case "+num[i]);
+				if(Integer.parseInt(num[i])%2==0){
+					sum=sum+Integer.parseInt(num[i]);
+					
+				}
+			}
 		}
+		System.out.println("sum is"+sum);
+		return sum;
+	}
+	public int OddAddition(String string) {
+		int sum=0;
+		
+		if(string.startsWith("O")) {
+			//System.out.println("in odd condition");
+			String[]num= string.split(",");
+			for(int i =1;i<num.length;i++) {
+				System.out.println("even case "+num[i]);
+				if(Integer.parseInt(num[i])%2!=0){
+					sum=sum+Integer.parseInt(num[i]);
+					
+				}
+			}
+		}
+		System.out.println("sum is"+sum);
 		return sum;
 	}
 	public int stringToNum(String[] numbers) throws Exception {
@@ -60,7 +93,7 @@ public class Calculator {
 	
 	public void fuctionCall() {
 		count++;
-		System.out.println(count);
+		//System.out.println(count);
 	}
 	
 }
